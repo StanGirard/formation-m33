@@ -55,4 +55,4 @@ services:
       - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
     restart: unless-stopped
     ports:
-      - 3000:3000
+      - 3001:3000

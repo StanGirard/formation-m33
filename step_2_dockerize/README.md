@@ -8,6 +8,8 @@ Create a docker file that will:
 - Install NodeJS
 - Install Express
 - Run the express app on port 3000 with the command `node app.js`
+- Build you container with `docker build . -t my-app`
+- Run the container with `docker run -p 3000:3000 my-app`
 
 ## Tips
 
@@ -30,6 +32,7 @@ Create a docker file that will:
 - `CMD node app.js`: This will run the express app
 </details>
 
+
 ## Answer
 
 <details>
@@ -37,9 +40,8 @@ Create a docker file that will:
 
 ```dockerfile
 FROM node:latest
-WORKDIR /app
 
-COPY ["package.json", "package-lock.json*"]
+COPY ["package.json", "package-lock.json*", "./"]
 
 RUN npm install
 
@@ -50,12 +52,14 @@ CMD [ "node", "app.js" ]
 ```
 </details>
 
+
 ## Go to next step
 
 Make sure that you have the following files in your project:
 - [ ] `Dockerfile`
 - [ ] `app.js`
 - [ ] `package.json`
+- [ ] `localhost:3000` shows you the text `Hello World!`
 
 Your achitecture should look like this
 ```

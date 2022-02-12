@@ -50,6 +50,9 @@ if (number < 2) {
 
 ## Answer
 
+<details>
+    <summary>Answer</summary>
+    
 ```js
 const express = require('express')
 const app = express()
@@ -71,7 +74,10 @@ app.get('/fibo/:number', (req, res) => {
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
+
 ```
+
+</details>
 
 ## Go to next step
 

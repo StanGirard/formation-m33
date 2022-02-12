@@ -1,0 +1,73 @@
+# Step 7
+
+Now that our metrics are available in Prometheus, let's add Grafana to our application.
+
+## Add Grafana to Docker Compose
+
+- [ ] Add a service called `grafana` to the docker compose file using the image `grafana/grafana:latest`
+- [ ] Add a port (3001) to the `grafana` service
+- [ ] Add a volume to the `grafana` service in order to load the configuration folder `grafana` found in this repository
+- [ ] Disable the authentication for the `grafana` service
+- [ ] Allow anonymous login for the `grafana` service
+- [ ] Anonymous logedin users will have to be Admin
+
+
+## Tips
+
+<details>
+    <summary>Tip 1</summary>
+- Grafana exposes port 3000. Use a remapping to expose port 3001
+</details>
+<details>
+    <summary>Tip 2</summary>
+- the volume that you need to mount to is `/etc/grafana`
+</details>
+<details>
+    <summary>Tip 3</summary>
+- Look at the environment values `GF_AUTH*`
+</details>
+<details>
+    <summary>Tip 4</summary>
+- GF_AUTH_DISABLE_LOGIN_FORM=true
+- GF_AUTH_ANONYMOUS_ENABLED=true
+- GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
+</details>
+
+## Answer
+
+<details>
+    <summary>Answer</summary>
+
+```yaml
+grafana:
+    image: grafana/grafana:latest
+     ports:
+      - 3001:3000
+    volumes:
+      - ./grafana:/etc/grafana
+    environment:
+      - GF_AUTH_DISABLE_LOGIN_FORM=true
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
+```
+</details>
+
+<details>
+    <summary>Your architecture</summary>
+Your architecture should look like this:
+```
+├── app
+│   ├── Dockerfile
+│   ├── package.json
+│   └── app.js
+└── docker-compose.yaml
+└── grafana
+    ├── provisioning
+    └── dashboards
+└── prometheus.yml
+```
+</details>
+
+
+
+

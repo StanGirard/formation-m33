@@ -11,7 +11,7 @@ We are going to use something called node exporter that will monitor the perform
 - [ ] Expose port 9100 to the node exporter
 - [ ] Add `/proc`, `/sys` and `/` to the node exporter volumes
 - [ ] Add the commands that allow node export to watch `/proc`, `/sys` and `/`
-- [ ] In `prometheus.yml` add the node exporter configuration
+- [ ] In `prometheus.yml` add the node exporter configuration in order to tell prometheus to use the node exporter to monitor the docker
 
 
 ## Tips
@@ -60,7 +60,7 @@ node-exporter:
       - '--path.sysfs=/host/sys'
       - '--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)'
 ```
-
+</details>
 <details>
     <summary>Tip 4</summary>
 
@@ -81,6 +81,7 @@ scrape_configs:
     static_configs:
       - targets: ["node-exporter:9100"]
 ```
+</details>
 
 ## Answer
 
