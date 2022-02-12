@@ -7,6 +7,9 @@ The goal of this step is to create a docker compose file that will run the expre
 - [ ] Create a docker compose file that will run the express app. `docker-compose.yaml`
 - [ ] Your docker compose file should have a service called `app` that will run the express app exposing port 3000.
 - [ ] move the `app.js` `dockerfile` and `package.json` in an `app` folder
+- [ ] name your container `app` in your `docker-compose.yaml`
+- [ ] run `docker-compose up` to start the app
+- [ ] Go to [http://localhost:3000](http://localhost:3000) and you should see the text `Hello World!`
 
 Your architecture should look like this:
 ```
@@ -65,10 +68,12 @@ Your architecture should look like this:
 version: "3.8"
 services:
   app:
+    container_name: app
     build: ./app
     ports:
       - "3000:3000"
 ```
+</details>
 
 
 

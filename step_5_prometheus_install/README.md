@@ -68,6 +68,7 @@ services:
 version: "3.8"
 services:
   app:
+    container_name: app
     build: ./app
     ports:
       - "3000:3000"

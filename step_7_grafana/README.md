@@ -20,7 +20,7 @@ Now that our metrics are available in Prometheus, let's add Grafana to our appli
 </details>
 <details>
     <summary>Tip 2</summary>
-- the volume that you need to mount to is `/etc/grafana`
+- the volume that you need to mount to is `/etc/grafana/provisioning`
 </details>
 <details>
     <summary>Tip 3</summary>
@@ -44,7 +44,7 @@ grafana:
      ports:
       - 3001:3000
     volumes:
-      - ./grafana:/etc/grafana
+      - ./grafana/provisioning:/etc/grafana/provisioning
     environment:
       - GF_AUTH_DISABLE_LOGIN_FORM=true
       - GF_AUTH_ANONYMOUS_ENABLED=true
@@ -67,6 +67,10 @@ Your architecture should look like this:
 └── prometheus.yml
 ```
 </details>
+
+## Go to next step
+
+- [ ] http://localhost:3001/d/rYdddlPKk/node-exporter?orgId=1&refresh=1m should have the metrics
 
 
 
