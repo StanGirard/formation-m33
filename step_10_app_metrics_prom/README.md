@@ -1,48 +1,13 @@
-# Step 9
+# Step 10
 
-The goal of this step is to add metrics to our nodejs application that can be queried throught a request
+The goal of this step is to add the metrics exposed from your app into prometheus using the `/metrics` endpoint
 
 ## To Do
 
-- [ ] Add Prom Client to your nodejs application `npm install --save prom-client`
-- [ ] Add this code to your nodejs application
+- [ ] Update your prometheus.yml to include your application metrics
 
-```js
-const { client } = require('prom-client');
-const register = new client.Registry();
 
-client.collectDefaultMetrics({
-    app: 'node-application-monitoring-app',
-    timeout: 10000,
-    gcDurationBuckets: [0.001, 0.01, 0.1, 1, 2, 5],
-    register
-});
-const httpRequestTimer = new client.Histogram({
-    name: 'http_request_duration_seconds',
-    help: 'Duration of HTTP requests in seconds',
-    labelNames: ['method', 'route', 'code'],
-    buckets: [0.1, 0.3, 0.5, 0.7, 1, 3, 5, 7, 10] // 0.1 to 10 seconds
-});
+## Go to Next step
 
-register.registerMetric(httpRequestTimer);
-
-app.get('/metrics', async (req, res) => {
-    res.setHeader('Content-Type', register.contentType);
-    res.send(await register.metrics());
-});
-
-app.get('/health', async (req, res) => {
-    const end = httpRequestTimer.startTimer();
-    end({ method: req.method, route: req.path, code: 200 });
-    res.send('OK');
-});
-```
-
-- [ ] Add this code to your nodejs `fibo` endpoint -> Example
-
-```js
-const end = httpRequestTimer.startTimer();
-<fibo code>
-end({ method: req.method, route: req.path, code: 200 });
-res.send(`<fibo output>`);
-```
+- Call a few times the url "localhost:3000/fibo/10" to see the metrics exposed by your application
+- Then go to prometheus and check if you can see your metrics -> `http_request_duration_seconds_count{route=~"/fibo/10"}` 
