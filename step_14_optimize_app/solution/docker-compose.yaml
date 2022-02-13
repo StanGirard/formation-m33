@@ -1,0 +1,78 @@
+services:
+  app:
+    container_name: app
+    build: ./app
+    ports:
+      - "3000:3000"
+  node-exporter:
+    image: prom/node-exporter:latest
+    container_name: node-exporter
+    restart: unless-stopped
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+    command:
+      - '--path.procfs=/host/proc'
+      - '--path.rootfs=/rootfs'
+      - '--path.sysfs=/host/sys'
+      - '--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)'
+    ports:
+      - 9100:9100
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    restart: unless-stopped
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    ports:
+      - 9090:9090
+      
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    ports:
+    - 3001:3000
+    volumes:
+      - ./grafana/provisioning:/etc/grafana/provisioning
+    environment:
+      - GF_AUTH_DISABLE_LOGIN_FORM=true
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
+
+  influxdb:
+    container_name: influxdb
+    image: influxdb:1.8
+    ports:
+      - "8086:8086"
+    environment:
+      - INFLUXDB_DB=k6
+  
+  k6:
+    container_name: k6
+    image: grafana/k6:latest
+    ports:
+      - "6565:6565"
+    environment:
+      - K6_OUT=influxdb=http://influxdb:8086/k6
+    volumes:
+      - ./load_testing:/scripts
+  
+  blackbox-exporter:
+    container_name: blackbox-exporter
+    image: prom/blackbox-exporter
+    ports:
+      - "9115:9115"
+    volumes:
+      - "./config:/config"
+    command: 
+    - '--config.file=/config/blackbox.yml'
+  
+  redis:
+    container_name: redis-cache
+    image: redis
+    ports:
+      - '6379:6379'
