@@ -1,15 +1,15 @@
-# Step 11
+# Step 13
 
-The goal of this step is to add blackbox exporter in order to continuously monitor the uptime of your application.
+The goal of this step is to create alerts that monitor your application based on your key metrics and indicators. Have fun :) 
 
+Follow this guide -> https://sre.google/sre-book/monitoring-distributed-systems/
 
-## To Do
-- [ ] Add blackbox exporter to your docker compose file -> https://github.com/prometheus/blackbox_exporter
-- [ ] Mount the folder config in your docker compose file in the service blackbox_exporter
-- [ ] Add the command `--config.file=/config/blackbox.yml` to the blackbox_exporter service
-- [ ] Update prometheus to scrape the blackbox exporter which targets your nodejs app
-
-
+And here for creating alerts in grafana -> https://grafana.com/docs/grafana/latest/alerting/old-alerting/create-alerts/
 ## Go to Next step
 
-- In prometheus -> `up{instance=~"app:3000"}` should return 1
+- [ ] I have alerts on my application when thresholds are above a certain value for my golden metrics:
+    - Latency
+    - Traffic
+    - Errors
+    - Saturation
+- [ ] I've challenged my alerts by an SRE @Padok
