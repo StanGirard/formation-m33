@@ -85,6 +85,7 @@ app:
 
 <details>
     <summary>Answer</summary>
+
 ```yaml
 version: "3.8"
 services:
@@ -94,6 +95,7 @@ services:
     ports:
       - "3000:3000"
 ```
+
 </details>
 
 ## Go to Next Step
