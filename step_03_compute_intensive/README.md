@@ -20,13 +20,17 @@ app.listen(port, () => {
 })
 ```
 
+## Todo
+
 - [ ] Add a route `fibo` that takes a number and returns the fibonacci sequence of that number.
 
 ## Tips
 
 <details>
     <summary>Tip 1</summary>
+
 - `app.get('/fibo/:number', (req, res) => {` : This will create a route that takes a number and returns the fibonacci sequence of that number.
+
 </details>
 <details>
     <summary>Tip 2</summary>
@@ -34,19 +38,24 @@ app.listen(port, () => {
 - `const number = parseInt(req.params.number)`
 
 - `res.send(fibonacci(req.params.number))` : This will send the fibonacci sequence of the number to the client.
+
 </details>
 <details>
     <summary>Tip 3</summary>
+
 - `const fibonacci = (number) => {` : This will create a function that will compute the fibonacci sequence of a number.
+
 </details>
 <details>
     <summary>Tip 4</summary>
+
 ```js
 if (number < 2) {
         return number
     }
     return fibonacci(number - 1) + fibonacci(number - 2)
 ```
+</details>
 
 ## Answer
 
