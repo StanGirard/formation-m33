@@ -15,7 +15,9 @@ cd formation-m33
 - [ ] Go to the `step_01_node_example` directory and follow the instructions
 - [ ] Once you are done with the step, go to the `step_02_dockerize` directory and follow the instructions and so on
 
+**There are tips and a solution folder for each step**
 
+If you are blocked, you can go to the solution folder and look at the answer, don't worry, you will find it there.
 ## What will we learn
 
 - Docker - Containerization
