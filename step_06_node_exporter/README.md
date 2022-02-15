@@ -7,6 +7,7 @@ We are going to use something called node exporter that will monitor the perform
 ## Use Node Export
 
 - [ ] Read the Github of [Node Exporter](https://github.com/prometheus/node_exporter)
+- [ ] Understand how prometheus config works https://prometheus.io/docs/introduction/first_steps/#configuring-prometheus
 - [ ] Add in your `docker-compose.yaml` a service called `node exporter` with the image `prom/node-exporter:latest`
 - [ ] Expose port 9100 to the node exporter
 - [ ] Add `/proc`, `/sys` and `/` to the node exporter volumes
@@ -64,9 +65,10 @@ node-exporter:
 <details>
     <summary>Tip 4</summary>
 
+https://prometheus.io/docs/introduction/first_steps/#configuring-prometheus
 `prometheus.yml`
-
 ```yaml
+
 global:
   scrape_interval: 15s
 
@@ -145,3 +147,9 @@ scrape_configs:
     static_configs:
       - targets: ["node-exporter:9100"]
 ```
+
+## Go to Next steps
+
+- [ ] Node Exporter should be exposed on port 9100
+- [ ] Prometheus should be able to see metrics from the node exporter
+- [ ] Your app is still exposed on port 3000

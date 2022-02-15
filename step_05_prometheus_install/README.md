@@ -17,6 +17,7 @@ More info about prometheus: https://prometheus.io/
 - [ ] Add a volume to the `prometheus` service in order to load the configuration file `prometheus.yml`
 - [ ] Add a command to the `prometheus` service that will start the prometheus server with the configuration file `prometheus.yml`
 
+Prometheus Guide: https://prometheus.io/docs/introduction/overview/
 
 ## Tips
 
@@ -31,6 +32,7 @@ services:
     ports:
       - "9090:9090"
 ```
+
 </details>
 <details>
     <summary>Tip 2</summary>
@@ -44,19 +46,7 @@ services:
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
 ```
-</details>
-<details>
-    <summary>Tip 3</summary>
-    
-```yaml
-services:
-  prometheus:
-    image: prom/prometheus:latest
-    ports:
-      - "9090:9090"
-    volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
-```
+
 </details>
 
 ## Answer
@@ -83,3 +73,6 @@ services:
 ```
 </details>
 
+## Go to next step
+
+- [ ] Prometheus should be available on port 9090
