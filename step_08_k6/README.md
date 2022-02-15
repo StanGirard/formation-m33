@@ -42,17 +42,13 @@ Add it to `grafana/provisioning/datasources/datasources.yml`
 
 You need a dashboard now :D 
 Add it to `grafana/provisioning/dashboards/dashboards.yml`
-</details>
+You can find it in `performances-test.json`
 
-<details>
-    <summary>Tip 5</summary>
-
-Here is the dashboard link 
-https://github.com/grafana/k6/tree/master/grafana
 </details>
 
 ## Go to next step
 
-You should see the metrics in Grafana after the load test in the dashboard.
+- [ ] `docker compose run k6 run /scripts/load.js` works
+- [ ] You should see the metrics in Grafana after the load test in the dashboard.
 
 ![](2022-02-13-18-52-42.png)
