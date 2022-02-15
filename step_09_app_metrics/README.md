@@ -1,6 +1,6 @@
 # Step 9
 
-The goal of this step is to add metrics to our nodejs application that can be queried throught a request
+The goal of this step is to add metrics to our nodejs application that can be queried throught a request. In order to do so, we are going to install a new package called `prom-client` that will allow us to monitor the nodejs application.
 
 ## To Do
 
@@ -46,3 +46,8 @@ const end = httpRequestTimer.startTimer();
 end({ method: req.method, route: req.path, code: 200 });
 res.send(`<fibo output>`);
 ```
+
+## Next Steps
+
+- [ ] `https://localhost:3000/metrics` returns some metrics
+- [ ] `https://localhost:3000/health` returns `OK`
