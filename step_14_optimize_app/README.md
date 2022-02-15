@@ -1,6 +1,6 @@
 # Step 14
 
-The goal of this step is optimize your application
+The goal of this step is optimize your application. Now that we know how our application is performing, we can optimize it and measure the impact of our changes.
 
 
 ## To Do
@@ -8,5 +8,5 @@ The goal of this step is optimize your application
 
 
 ## Go to Next step
-
-- In prometheus -> `up{instance=~"app:3000"}` should return 1
+- [ ] Have a measure of the impact in performance with K6 load test
+- [ ] Have a list of ways to improve your application (maybe implement it)
