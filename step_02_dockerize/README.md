@@ -1,6 +1,7 @@
 # Step 2
 
 The goal of this step is to build a docker container for an express app that will run a few commands.
+Docker is a tool that allows you to run applications on a virtual machine. It removes the need to install and manage servers. It bundles all the software you need to run your application in one container.
 
 ## Create a Dockerfile
 
@@ -17,19 +18,35 @@ Create a docker file that will:
 
 <details>
   <summary>Tip 1</summary>
+
 - `FROM node:latest`: This will install NodeJS
+
 </details>
 <details>
     <summary>Tip 2</summary>
-- `RUN npm install `: This will install Express
+
+    - `COPY app.js /app.js`: This will copy the app.js file to the root of the container
+    - Copy the `package.json` file to the root of the container also ;) 
+
 </details>
 <details>
     <summary>Tip 3</summary>
-    - `COPY app.js /app.js`: This will copy the app.js file to the root of the container
+
+- `RUN npm install`: This will install Express
+
 </details>
+
 <details>
     <summary>Tip 4</summary>
+
 - `CMD node app.js`: This will run the express app
+
+</details>
+<details>
+    <summary>Tip 5</summary>
+
+- `EXPOSE 3000`: This will expose the port 3000
+
 </details>
 
 
