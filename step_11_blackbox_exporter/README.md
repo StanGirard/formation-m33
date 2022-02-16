@@ -51,6 +51,41 @@ This one is hard, you need to do some remapping ;) in your prometheus.yml
 ```
 </details>
 
+## Answer
+
+<details>
+    <summary>Answer</summary>
+
+```yaml
+blackbox-exporter:
+    container_name: blackbox-exporter
+    image: prom/blackbox-exporter
+    ports:
+      - "9115:9115"
+    volumes:
+      - "./config:/config"
+    command: 
+    - '--config.file=/config/blackbox.yml'
+```
+
+```yaml
+  - job_name: "blackbox"
+    metrics_path: /probe
+    params:
+      module: [http_2xx] # Look for a HTTP 200 response.
+    static_configs:
+      - targets:
+          - http://app:3000/health
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: blackbox-exporter:9115 # The blackbox exporter's real hostname:port.
+```
+</details>
+
 ## Go to Next step
 
 - [ ] In prometheus -> `up{instance=~"app:3000"}` should return 1
